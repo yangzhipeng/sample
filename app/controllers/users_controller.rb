@@ -21,6 +21,20 @@ class UsersController < ApplicationController
   	end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      # 处理更新成功的情况
+
+    else
+      render 'edit'
+    end
+  end
+
   private
   
   #user_params 方法只会在 Users 控制器内部使用，不需要开放给外部用户
