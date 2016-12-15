@@ -13,3 +13,15 @@ haloyoung:
    name: young
    email: halo_young@hotmail.com
    password_digest: <%= User.digest('password') %>
+
+joanna:
+  name: yeyafang
+  email: yeyafang@163.com
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name: <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
