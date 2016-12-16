@@ -13,6 +13,7 @@ haloyoung:
    name: young
    email: halo_young@hotmail.com
    password_digest: <%= User.digest('password') %>
+   admin: true
 
 joanna:
   name: yeyafang
