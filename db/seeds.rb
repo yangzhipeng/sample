@@ -5,11 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#种子数据中的用户
 User.create!(name: "Halo Young",
 	         email: "1124723677@qq.com",
 	         password: "123456",
 	         password_confirmation: "123456",
-	         admin: true)
+	         admin: true,
+	         activated: true,
+	         activated_at: Time.zone.now)
 
 99.times do |n|
 	name = Faker::Name.name
@@ -18,5 +21,7 @@ User.create!(name: "Halo Young",
 	User.create!(name: name,
 		         email: email,
 		         password: password,
-		         password_confirmation: password)
+		         password_confirmation: password,
+		         activated: true,
+		         activated_at: Time.zone.now)
 end
