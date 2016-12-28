@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     redirect_to root_url and return unless @user.activated?
   	#debugger #把它当成 Rails 控制台，在其中执行代码，查看应用的状态
   end
@@ -51,23 +52,14 @@ class UsersController < ApplicationController
 
   private
   
-  #user_params 方法只会在 Users 控制器内部使用，不需要开放给外部用户
+    
+    #user_params 方法只会在 Users 控制器内部使用，不需要开放给外部用户
     def user_params
     	params.require(:user).permit(:name, :email, :password,
     	                             :password_confirmation)
     end
-
+   
     #前置过滤器
-
-    #确保用户已登录
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-
     #确保是正确的用户
     def correct_user
       @user = User.find(params[:id])
